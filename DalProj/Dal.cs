@@ -13,7 +13,7 @@ namespace DalProj
     {
         //private static string conStr = @"Data Source = ELAD1H\SQLEXPRESS;Initial Catalog = Project; Integrated Security = True";
         //private static string conStr = @"Data Source=ELAD_SSD\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
-        private static string conStr = ConfigurationManager.ConnectionStrings["LIVEDNS"].ConnectionString;
+        private static string conStr = ConfigurationManager.ConnectionStrings["Prod"].ConnectionString;
         private static SqlConnection Con = new SqlConnection(conStr);
         private static SqlDataAdapter adtr;
         private static SqlCommand cmd;
