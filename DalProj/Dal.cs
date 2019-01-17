@@ -14,17 +14,21 @@ namespace DalProj
         //private static string conStr = @"Data Source = ELAD1H\SQLEXPRESS;Initial Catalog = Project; Integrated Security = True";
         //private static string conStr = @"Data Source=ELAD_SSD\SQLEXPRESS;Initial Catalog=Project;Integrated Security=True";
         private static string conStr = ConfigurationManager.ConnectionStrings["LIVEDNS"].ConnectionString;
-        private static SqlConnection Con = new SqlConnection(conStr);
-        private static SqlDataAdapter adtr;
-        private static SqlCommand cmd;
+        //private static SqlConnection Con = new SqlConnection(conStr);
+        //private static SqlDataAdapter adtr;
+        //private static SqlCommand cmd;
 
 
 
         public static DataTable Register(string username, string email, string password)
 
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
+               
                 Con.Open();
                 cmd = new SqlCommand("Create_User", Con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -57,6 +61,9 @@ namespace DalProj
 
         public static DataTable Login(string username, string password)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -89,6 +96,9 @@ namespace DalProj
 
         public static DataTable AddComment(int userId, int songId, string username, string freeText)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -124,10 +134,12 @@ namespace DalProj
 
         public static DataTable SongsList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
-
                 cmd = new SqlCommand("SELECT * FROM Songs_List", Con);
                 adtr = new SqlDataAdapter(cmd);
                 DataSet dataset = new DataSet();
@@ -155,8 +167,12 @@ namespace DalProj
 
         public static DataTable CommentsList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
+
             try
-            {
+            {         
                 Con.Open();
                 cmd = new SqlCommand("SELECT * FROM Comments_List", Con);
                 adtr = new SqlDataAdapter(cmd);
@@ -168,6 +184,22 @@ namespace DalProj
                     return dataset.Tables["Comment"];
                 }
                 return null;
+
+                //DataTable MyTable = new DataTable(); 
+                //DataTable MyTableByName = new DataTable("MyTableName");
+                //MyTable.Columns.Add("SongID", typeof(int));
+                //MyTable.Columns.Add("UserID", typeof(int));
+                //MyTable.Columns.Add("Username", typeof(string));
+                //MyTable.Columns.Add("CommentText", typeof(string));
+
+                //DataRow row = MyTable.NewRow();
+                //row["SongID"] = 16;
+                //row["UserID"] = 1;
+                //row["Username"] = "Elad";
+                //row["CommentText"] = "This live version in much better than the album version!";
+                //MyTable.Rows.Add(row);
+                ////SongID":16,"UserId":1,"Username":"Elad","CommentText":"This live version in much better than the album version!"}
+                //return MyTable;
             }
             catch (Exception e)
             {
@@ -184,8 +216,12 @@ namespace DalProj
 
         public static DataTable PlaylistList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
+
                 Con.Open();
                 cmd = new SqlCommand("SELECT * FROM Playlists_List", Con);
                 adtr = new SqlDataAdapter(cmd);
@@ -213,8 +249,12 @@ namespace DalProj
 
         public static DataTable PlaylistSongsList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
+
                 Con.Open();
                 cmd = new SqlCommand("SELECT * FROM Playlist_Songs_list", Con);
                 adtr = new SqlDataAdapter(cmd);
@@ -243,8 +283,12 @@ namespace DalProj
 
         public static DataTable PlaylistsImagesList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
+
                 Con.Open();
                 cmd = new SqlCommand("SELECT * FROM Playlists_Images_List", Con);
                 adtr = new SqlDataAdapter(cmd);
@@ -274,8 +318,12 @@ namespace DalProj
 
         public static DataTable CreatePlaylist(int userId, string playlistName, int playlistImgId)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
+
                 Con.Open();
                 cmd = new SqlCommand("Create_Playlist", Con);
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -316,6 +364,9 @@ namespace DalProj
 
         public static bool DeletePlaylist(int playlistId)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -346,6 +397,9 @@ namespace DalProj
 
         public static bool AddPlaylistSong(int[] SongIds, int PlaylistId)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -382,6 +436,9 @@ namespace DalProj
 
         public static bool DeletePlaylistsSong(int songId, int seqNumber)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -414,6 +471,9 @@ namespace DalProj
 
         public static bool AddlikeToSong(int userID, int songID, bool songLike)
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
             {
                 Con.Open();
@@ -444,8 +504,11 @@ namespace DalProj
 
         public static DataTable UsersLikesList()
         {
+            SqlConnection Con = new SqlConnection(conStr);
+            SqlDataAdapter adtr;
+            SqlCommand cmd;
             try
-            {
+            {  
                 Con.Open();
                 cmd = new SqlCommand("SELECT * FROM Songs_Likes_List", Con);
                 adtr = new SqlDataAdapter(cmd);
@@ -457,6 +520,20 @@ namespace DalProj
                     return dataSet.Tables["LikesList"];
                 }
                 return null;
+
+                //DataTable MyTable = new DataTable(); // 1
+                //DataTable MyTableByName = new DataTable("MyTableName");
+                //MyTable.Columns.Add("UserID", typeof(int));
+                //MyTable.Columns.Add("SongID", typeof(int));
+                //MyTable.Columns.Add("LikeSong", typeof(bool));
+
+                //DataRow row = MyTable.NewRow();
+                //row["UserID"] = 1;
+                //row["SongID"] = 24;
+                //row["LikeSong"] = true;
+                //MyTable.Rows.Add(row);
+
+                //return MyTable;
             }
             catch (Exception e)
             {

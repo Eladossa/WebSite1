@@ -165,7 +165,7 @@ namespace BalProj
             if (ds != null && ds.Tables[0].Rows.Count > 0)
             {
                 for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
-                {
+                {   //SongId, UserId, Comment  שונה מאלו
                     commentList.Add(new Comment((int)ds.Tables[0].Rows[i]["SongId"], (int)ds.Tables[0].Rows[i]["UserId"],
                         (string)ds.Tables[0].Rows[i]["Username"], (string)ds.Tables[0].Rows[i]["Comment"]));
                 }
